@@ -23,8 +23,8 @@ time.sleep(2)
 loginbutton = driver.find_element(By.XPATH,'//a[contains(@href,"/login")]') #We want go to login page
 time.sleep(1)
 loginbutton.click()
-signemail=driver.find_element(By.NAME,"email")
-if signemail.is_displayed():                    #We generate comunicate to verified that we are on login page accually (by find email table on login page)
+signup=driver.find_element(By.CLASS_NAME,"signup-form")
+if signup.is_displayed():                    #We generate comunicate to verified that we are on login page accually
     print("You are in login page!")
 else:
     print("Whoops! Try again")
