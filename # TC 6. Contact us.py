@@ -22,7 +22,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.common.alert import Alert
 
-
+import pyautogui
 from selenium.webdriver.chrome.options import Options
 
 #option1 = Options()
@@ -30,7 +30,7 @@ from selenium.webdriver.chrome.options import Options
 
 #1. Launch browser
 
-driver = webdriver.Chrome(chrome_options= option1) #browser which we choose
+driver = webdriver.Chrome() #(chrome_options= option1) #browser which we choose
 WebDriverWait(driver,10)
 time.sleep(1)
 
@@ -85,16 +85,32 @@ time.sleep(2)
 
 # 7. Upload file
 
-#uploadfile = driver.find_element(By.CSS_SELECTOR,'#contact-us-form > div:nth-child(6)').send_keys("/Users/Artur/Pictures/pants.jpeg")
+#first try with method from stackoverflow
+# uploadfile = driver.find_element(By.CSS_SELECTOR,'#contact-us-form > div:nth-child(6)').send_keys("/Users/Artur/Pictures/pants.jpeg")
 
-#uploadfile.send_keys('/Users/Artur/Pictures/1665678985220-kopia.jpeg')
-#time.sleep(15)
+# uploadfile.send_keys('/Users/Artur/Pictures/1665678985220-kopia.jpeg')
+# time.sleep(15)
+
+# element_present = EC.presence_of_element_located((By.XPATH, '//*[@id="contact-us-form"]/div[5]/input'))  # Example xpath
+# time.sleep(2)
+
+#UPLOAD FILE BY PYAUTOGUI
+wybierz = driver.find_element(By.CSS_SELECTOR,'#contact-us-form >div:nth-child(6)').click()
+time.sleep(3)
+
+WebDriverWait(driver,10)
+pyautogui.write('/users/artur/obrazki/pants.jpeg', interval=0.40) 
+time.sleep(2)
+pyautogui.press('enter')
+time.sleep(2)
+pyautogui.press('enter')
 
 # 8. Click 'Submit' button
 
 submit = driver.find_element(By.CSS_SELECTOR,'#contact-us-form > div:nth-child(7) > input').click()
 
 time.sleep(4)
+
 # 9. Click OK button
 WebDriverWait(driver, 10).until(EC.alert_is_present())
 driver.switch_to.alert.accept()
@@ -119,4 +135,5 @@ homepage = driver.find_element(By.CSS_SELECTOR,'body > section:nth-child(3) > di
 if homepage.is_displayed():
     print('Welcome on home page')
 
-#driver.quit(5)
+time.sleep(3)
+driver.quit()
