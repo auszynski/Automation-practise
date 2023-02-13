@@ -77,12 +77,9 @@ time.sleep(2)
 # 9. Verify that product is displayed in cart page with exact quantity
 
 quantityincart = driver.find_element(By.CSS_SELECTOR,'#product-6 > td.cart_quantity')
-print('elo', quantityincart.get_attribute('value'))
-#quantityincart.is_displayed()
-#print(quantityincart.getAttribute('value'))
+print(quantityincart.text)
 
-if x == quantityincart.get_attribute('value'):
+if x == int(quantityincart.text):
     print('Product is displayed in cart page with exact quantity')
 time.sleep(4)
 driver.quit()
-#product-11 > td.cart_quantity > button
