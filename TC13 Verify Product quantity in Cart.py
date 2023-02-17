@@ -18,7 +18,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.common.keys import Keys
 
-
+from utils import hide_ads
 #1. Launch browser
 
 driver = webdriver.Chrome() #browser which we choose
@@ -40,6 +40,7 @@ if opensite.is_displayed():                      #We generate comunicate if we o
     print("The home page is visible successfully!") 
 
 time.sleep(1)
+hide_ads(driver)
 
 # 4. Click 'View Product' for any product on home page
 
