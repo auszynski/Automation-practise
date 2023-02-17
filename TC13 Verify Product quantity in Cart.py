@@ -29,6 +29,8 @@ time.sleep(1)
 
 driver.get('http://automationexercise.com') #website that we want to open
 WebDriverWait(driver,1)
+hide_ads(driver)
+
 time.sleep(1) #test wait 3sec after open website
 
 #3. Verify that home page is visible successfully
@@ -40,11 +42,14 @@ if opensite.is_displayed():                      #We generate comunicate if we o
     print("The home page is visible successfully!") 
 
 time.sleep(1)
-hide_ads(driver)
-
+tc = driver.find_element(By.CSS_SELECTOR,'#slider-carousel > div > div.item.active > div:nth-child(1) > a.test_cases_list > button')
+tc.click()
 # 4. Click 'View Product' for any product on home page
-
-viewproduct = driver.find_element(By.CSS_SELECTOR,'body > section:nth-child(3) > div.container > div > div.col-sm-9.padding-right > div.features_items > div:nth-child(8) > div > div.choose > ul > li > a').click()
+viewproduct = driver.find_element(By.XPATH,'/html/body/section[2]/div/div/div[2]/div[1]/div[7]/div/div[2]/ul/li/a')
+#viewproduct = driver.find_element(By.CSS_SELECTOR,'body > section:nth-child(3) > div > div > div.col-sm-9.padding-right > div.features_items > div:nth-child(8) > div > div.choose > ul > li > a')
+time.sleep(1)
+#viewproduct.click()
+viewproduct.click()
 time.sleep(3)
 
 # 5. Verify product detail is opened
