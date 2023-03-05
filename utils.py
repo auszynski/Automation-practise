@@ -1,4 +1,7 @@
 from selenium.webdriver.common.by import By
+from selenium import webdriver
+from selenium.webdriver.support.ui import WebDriverWait
+import time
 
 def hide_ads(driver):
   print("Remove ads")
